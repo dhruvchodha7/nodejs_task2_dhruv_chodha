@@ -15,21 +15,21 @@ const createToken = (id) => {
 
 exports.register = async(req, res) => {
     try{
-        const {name, email, password} = req.body;
+        const {name, age, email, password} = req.body;
         const existingUser = await User.findOne({email: email});
         const myEncPassword = await bcrypt.hash(password, 10)
         const user = await User.create({
             name,
+            age,
             email: email.toLowerCase(),
-            password: myEncPassword,
-            emailToken: crypto.randomBytes(64).toString('hex'),
-            isVerified: false,
+            password: myEncPassword
         })
         await user.save();
         
         res.status(200).json({
             name: user.name,
             email: user.email,
+            age: user.age,
             success: true,
             message: "user successfully registered"
         }) 
