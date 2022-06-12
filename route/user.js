@@ -10,5 +10,5 @@ router.route('/login').post(login);
 
 router.route('/').get(listUsers);
 router.route('/verify-email').get(verifyEmail);
-
+// task 2 http://localhost:3000/api/upcloud/users
 module.exports = router;
